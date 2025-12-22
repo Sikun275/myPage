@@ -3,27 +3,25 @@ import { Experience } from '@/types'
 export const experiences: Experience[] = [
   {
     id: '1',
-    company: 'Tech Company Inc.',
-    role: 'Software Development Engineer',
-    period: '2022 - Present',
+    company: 'Outlier.ai',
+    role: 'Prompt Engineer & Software Development Engineer',
+    period: 'May 2025 - Present',
     achievements: [
-      'Built and deployed microservices handling 1M+ requests/day',
-      'Reduced API response time by 50% through caching and query optimization',
-      'Implemented CI/CD pipelines reducing deployment time from 2 hours to 15 minutes',
-      'Led architecture decisions for new product features serving 100K+ users'
+      'Built and maintained Python-based evaluation frameworks to support internal testing of LLM outputs, enabling faster experimentation and improved reproducibility.',
+      'Modernized legacy infrastructure by implementing a modular Python backend and React-based UI, increasing maintainability, visibility, and collaboration across teams.',
+      'Led documentation of internal prompt testing infrastructure, onboarding guides, and evaluation tooling, improving knowledge transfer and reducing ramp-up time for new team members.'
     ],
     technologies: ['Java', 'Spring Boot', 'AWS', 'Docker', 'Kubernetes', 'PostgreSQL', 'React']
   },
   {
     id: '2',
-    company: 'StartupXYZ',
-    role: 'Full Stack Engineer',
-    period: '2020 - 2022',
+    company: 'Outlier.ai',
+    role: 'Prompt Engineer & Web Developer',
+    period: 'Aug 2024 - Feb 2025',
     achievements: [
-      'Developed MVP from scratch using React and Node.js',
-      'Implemented real-time features using WebSockets',
-      'Optimized database queries reducing load time by 70%',
-      'Set up monitoring and alerting infrastructure'
+      'Designed and iterated on LLM prompts for models using few-shot, zero-shot, and instruction-tuning techniques; evaluated outputs with both NLP metrics and human-labeled scoring.',
+      'Applied reinforcement learning from human feedback by assigning weighted rewards and penalties to guide model behaviour, improve alignment and scalability.',
+      'Collaborated with cross-functional teams to develop production-ready generative AI solutions, optimize prompting strategies, and document best practices across use cases.',
     ],
     technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker']
   },
