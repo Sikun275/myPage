@@ -28,7 +28,7 @@ export const experiences: Experience[] = [
   {
     id: '3',
     company: 'Wilfrid Laurier University',
-    role: 'Bachelor of Computer Science',
+    role: 'Bachelor of Computer Science(CS)',
     period: 'Sep 2022 - Oct 2024',
     achievements: [
       'Developed MVP from scratch using React and Node.js',
@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
   {
     id: '4',
     company: 'University of Waterloo & Wilfrid Laurier University',
-    role: 'Bachelor of Computer Science, minor in Business Administration',
+    role: 'Bachelor of CS, Minor in Business Administration',
     period: 'Sep 2020 - Aug 2022',
     achievements: [
       'President’s Gold Scholarship 2020',

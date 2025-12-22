@@ -8,7 +8,7 @@ export const projects: Project[] = [
     solution: 'Built an iOS app with SwiftUI offering three decision modes: customizable list decisions with weighted random selection, location-based place recommendations using Google Places API, and image marking for visual choice selection. Implemented MVVM architecture with persistent storage and user feedback system to improve future recommendations',
     technologies: ['SwiftUI (iOS 16+)', 'MVVM', 'Google Places API', 'URLSession for Google Places API', 'UserDefaults', 'CoreLocation', 'PhotosUI', 'UIKit integration', 'XCTest framework'],
     githubUrl: 'https://github.com/Sikun275/DecideForMe',
-    screenshot: '/images/projects/decideforme-screenshot.png',
+    screenshot: '/images/projects/img_home_page.png',
     demoGif: '/images/projects/decideforme-demo.gif',
     systemDesign: 'MVVM architecture with SwiftUI views, ViewModels handling business logic, and Models for data persistence. Uses UserDefaults for local storage, Google Places API for location services, and CoreLocation for GPS. Weighted selection algorithms combine user feedback with distance/rating metrics for intelligent recommendations',
     performance: [
