@@ -26,8 +26,18 @@ export interface Experience {
   technologies: string[]
 }
 
+export interface Certificate {
+  id: string
+  name: string
+  issuer: string
+  issueDate: string
+  expiryDate?: string
+  credentialId?: string
+  credentialUrl?: string
+  skills: string[]
+}
+
 export interface Skill {
   name: string
   category: 'frontend' | 'backend' | 'infrastructure' | 'tools'
 }
-

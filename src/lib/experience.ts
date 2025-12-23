@@ -31,12 +31,9 @@ export const experiences: Experience[] = [
     role: 'Bachelor of Computer Science(CS)',
     period: 'Sep 2022 - Oct 2024',
     achievements: [
-      'Developed MVP from scratch using React and Node.js',
-      'Implemented real-time features using WebSockets',
-      'Optimized database queries reducing load time by 70%',
-      'Set up monitoring and alerting infrastructure'
+    
     ],
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker']
+    technologies: ['Computer Networks', 'Operating Systems', 'Data Structures and Algorithms', 'Database Systems', 'Software Engineering', 'Computer Architecture', 'Data Mining and Data Warehousing', 'Text Mining and Information Retrieval', 'Artificial Intelligence', 'Machine Learning', 'Parrel Programming', 'Quantum Computing']
   },
   {
     id: '4',
@@ -47,7 +44,7 @@ export const experiences: Experience[] = [
       'President’s Gold Scholarship 2020',
       'President’s Gold Scholarship 2021',
     ],
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker']
+    technologies: ['Object-Oriented Programming', 'Algorithm Design and Analysis','Software Engineering', 'Linear Algebra', 'Calculus', 'Probability and Statistics','Intro to Macroeconomics', 'Intro to Microeconomics', 'International Trade', 'Understanding Business Environment', 'Personal Investment']
   },
 ]
 
