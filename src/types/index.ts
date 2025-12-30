@@ -41,3 +41,12 @@ export interface Skill {
   name: string
   category: 'frontend' | 'backend' | 'infrastructure' | 'tools'
 }
+
+export interface TimelineItem {
+  id: string
+  date: string // Format: "YYYY-MM" or "YYYY-MM-DD"
+  place: string
+  title?: string
+  description?: string
+  image?: string | string[] // Single image (string) or multiple images (string[])
+}

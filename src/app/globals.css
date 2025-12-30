@@ -35,7 +35,7 @@
 
   /* Text with gradient color effect from primary to orange */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-orange-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-orange-400;
   }
 
   /* Card component with white background, rounded corners, border, and hover shadow effect */
