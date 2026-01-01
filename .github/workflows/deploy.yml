@@ -1,57 +1,74 @@
-name: Deploy to GitHub Pages
+# Workflow name - appears in GitHub Actions tab
+name: Deploy myPageto GitHub Pages
 
+# Trigger conditions - when this workflow should run
 on:
+  # Run automatically when code is pushed to the main branch
   push:
     branches:
       - main
+  # Also allow manual triggering from GitHub Actions UI
   workflow_dispatch:
 
+# Permissions required for this workflow to function
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read    # Read repository contents (code, files)
+  pages: write     # Write to GitHub Pages (deploy files)
+  id-token: write  # Required for OIDC authentication with GitHub Pages
 
+# Concurrency control - prevents multiple deployments from running simultaneously
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages"              # All workflows with this group share the same concurrency limit
+  cancel-in-progress: false   # Don't cancel in-progress runs, wait for them to finish
 
+# Define the jobs (tasks) to run
 jobs:
+  # Job 1: Build the Next.js application into static files
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    # Use GitHub's Ubuntu runner (virtual machine)
     steps:
+      # Step 1: Checkout (download) the repository code
       - name: Checkout
         uses: actions/checkout@v4
       
+      # Step 2: Set up Node.js runtime environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '18'  # Use Node.js version 18
+          cache: 'npm'        # Cache npm packages for faster builds
       
+      # Step 3: Install all project dependencies from package.json
       - name: Install dependencies
-        run: npm ci
+        run: npm ci           # 'ci' installs exactly as specified in package-lock.json (faster, more reliable)
       
+      # Step 4: Build the Next.js app - creates static files in 'out' directory
       - name: Build
         run: npm run build
         env:
-          NODE_ENV: production
+          NODE_ENV: production  # Set environment to production for optimized build
       
+      # Step 5: Configure GitHub Pages settings
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
+      # Step 6: Upload the built files as an artifact (temporary storage)
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './out'
+          path: './out'       # Upload everything from the 'out' directory (contains built static site)
   
+  # Job 2: Deploy the built files to GitHub Pages
   deploy:
+    # Configure the deployment environment
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
+      name: github-pages     # Use GitHub Pages environment
+      url: ${{ steps.deployment.outputs.page_url }}  # Output the final deployed URL
+    runs-on: ubuntu-latest   # Use GitHub's Ubuntu runner
+    needs: build             # Wait for 'build' job to complete before running
     steps:
+      # Deploy the uploaded artifact to GitHub Pages
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        id: deployment       # Give this step an ID so we can reference its outputs
+        uses: actions/deploy-pages@v4  # Official GitHub action for deploying to Pages
 
