@@ -15,6 +15,11 @@ interface TimelineCardProps {
   cardRef: React.RefObject<HTMLDivElement>
 }
 
+// Helper function to check if a file is a video
+const isVideoFile = (src: string): boolean => {
+  return /\.(mp4|mov|MP4|MOV|webm|WEBM)$/i.test(src)
+}
+
 export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardProps) {
   return (
     <div ref={cardRef} className="card p-6 md:p-8 max-w-4xl mx-auto">
@@ -38,13 +43,14 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
         )}
       </div>
 
-      {/* Current Item Image(s) - supports single or multiple images */}
-      {item && item.image && cardWidth && (
+      {/* Current Item Image(s) and Video(s) - supports single or multiple media */}
+      {item && item.image && (
         <div className="w-full">
           {Array.isArray(item.image) ? (
-            // Multiple images - display in grid (3 per row, automatically wraps to multiple rows)
+            // Multiple media files - display in grid (3 per row, automatically wraps to multiple rows)
             <div className="grid grid-cols-3 gap-2 w-full">
-              {item.image.map((imageSrc, index) => {
+              {item.image.map((mediaSrc, index) => {
+                const isVideo = isVideoFile(mediaSrc)
                 return (
                   <div
                     key={index}
@@ -53,53 +59,89 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                       aspectRatio: '1 / 1',
                     }}
                   >
-                    <img
-                      src={imageSrc}
-                      alt={`${item.place} - Image ${index + 1}`}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        target.style.display = 'none'
-                      }}
-                    />
+                    {isVideo ? (
+                      // Video element
+                      <video
+                        src={mediaSrc}
+                        className="w-full h-full object-contain"
+                        controls
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      // Image element
+                      <img
+                        src={mediaSrc}
+                        alt={`${item.place} - Image ${index + 1}`}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                        }}
+                      />
+                    )}
                   </div>
                 )
               })}
             </div>
           ) : (
-            // Single image
-            <div
-              className="relative group rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center"
-              style={{
-                // Slightly less than 1/3 to allow for margins (assuming ~4% margin per side = 8% total)
-                width: `${(cardWidth * 0.92) / 3}px`,
-                height: `${(cardWidth * 0.92) / 3}px`,
-                aspectRatio: '1 / 1',
-              }}
-            >
-              <img
-                src={item.image}
-                alt={item.place}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = 'none'
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-                {item.title && (
-                  <p className="text-white text-sm font-bold mb-1">
-                    {item.title}
-                  </p>
-                )}
-                <p className="text-white text-xs font-medium">
-                  {item.place}
-                </p>
-                <p className="text-white/80 text-xs">
-                  {formatDate(item.date)}
-                </p>
-              </div>
-            </div>
+            // Single media file
+            (() => {
+              const isVideo = isVideoFile(item.image)
+              return (
+                <div
+                  className="relative group rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center w-1/3 mx-auto"
+                  style={{
+                    aspectRatio: '1 / 1',
+                  }}
+                >
+                  {isVideo ? (
+                    // Single video
+                    <video
+                      src={item.image}
+                      className="w-full h-full object-contain"
+                      controls
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    // Single image
+                    <>
+                      <img
+                        src={item.image}
+                        alt={item.place}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                        }}
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                        {item.title && (
+                          <p className="text-white text-sm font-bold mb-1">
+                            {item.title}
+                          </p>
+                        )}
+                        <p className="text-white text-xs font-medium">
+                          {item.place}
+                        </p>
+                        <p className="text-white/80 text-xs">
+                          {formatDate(item.date)}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )
+            })()
           )}
         </div>
       )}
