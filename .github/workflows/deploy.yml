@@ -1,5 +1,5 @@
 # Workflow name - appears in GitHub Actions tab
-name: Deploy myPageto GitHub Pages
+name: Deploy myPage to GitHub Pages
 
 # Trigger conditions - when this workflow should run
 on:

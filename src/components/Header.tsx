@@ -23,7 +23,7 @@ export default function Header() {
     { label: 'Experience', href: '#experience' },
     { label: 'Certificates', href: '#certificates' },
     { label: 'Skills', href: '#skills' },
-    
+    { label: 'More Me', href: '#moreMe' },
     { label: 'Contact', href: '#contact' },
 
   ]
