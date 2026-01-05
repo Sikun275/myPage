@@ -1,16 +1,32 @@
 /**
- * Utility function to prepend basePath to video URLs
+ * Utility function to prepend basePath to image and video URLs
  * 
- * Note: For images, use Next.js Image component which handles basePath automatically.
- * This function is only needed for <video> tags since Image component doesn't support videos.
+ * This function ensures correct paths for GitHub Pages deployment.
+ * Works for both images (used with Next.js Image component) and videos.
  * 
- * @param path - The video file path (e.g., '/images/moreMe/video.mp4')
+ * @param path - The asset file path (e.g., '/images/moreMe/image.jpg' or '/images/projects/screenshot.png')
  * @returns The path with basePath prefix in production
  */
 export function getImagePath(path: string): string {
-  // For static export to GitHub Pages, always use /myPage in production
-  // This matches the basePath in next.config.js
-  const basePath = process.env.NODE_ENV === 'production' ? '/myPage' : ''
+  // Determine basePath: use /myPage in production, empty in development
+  let basePath = ''
+  
+  // Check at runtime (client-side)
+  if (typeof window !== 'undefined') {
+    // If we're on GitHub Pages, the pathname will start with /myPage
+    if (window.location.pathname.startsWith('/myPage')) {
+      basePath = '/myPage'
+    }
+    // If we're in production build but on localhost, still use basePath
+    else if (process.env.NODE_ENV === 'production') {
+      basePath = '/myPage'
+    }
+  } else {
+    // Server-side or build-time: use NODE_ENV
+    if (process.env.NODE_ENV === 'production') {
+      basePath = '/myPage'
+    }
+  }
   
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`

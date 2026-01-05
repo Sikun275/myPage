@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaRocket } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getImagePath } from '@/lib/useBasePath'
 
 interface ProjectDetailClientProps {
   project: Project
@@ -85,11 +86,12 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
           >
             <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg w-full p-4">
               <Image
-                src={project.screenshot}
+                src={getImagePath(project.screenshot)}
                 alt={project.title}
                 width={1200}
                 height={800}
                 className="w-full h-auto object-contain rounded-lg"
+                unoptimized
               />
             </div>
             {project.ciCd && (

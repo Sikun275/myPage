@@ -75,9 +75,9 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                         Your browser does not support the video tag.
                       </video>
                     ) : (
-                      // Image element - using Next.js Image for automatic basePath handling
+                      // Image element - using Next.js Image with manual basePath handling
                       <Image
-                        src={mediaSrc}
+                        src={getImagePath(mediaSrc)}
                         alt={`${item.place} - Image ${index + 1}`}
                         fill
                         className="object-contain group-hover:scale-105 transition-transform duration-300"
@@ -114,10 +114,10 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                       Your browser does not support the video tag.
                     </video>
                   ) : (
-                    // Single image - using Next.js Image for automatic basePath handling
+                    // Single image - using Next.js Image with manual basePath handling
                     <>
                       <Image
-                        src={item.image}
+                        src={getImagePath(item.image)}
                         alt={item.place}
                         fill
                         className="object-contain group-hover:scale-105 transition-transform duration-300"

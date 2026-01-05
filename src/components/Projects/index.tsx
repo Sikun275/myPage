@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import { projects } from '@/lib/projects'
 import Image from 'next/image'
 import ProjectContent from './ProjectContent'
+import { getImagePath } from '@/lib/useBasePath'
 
 export default function Projects() {
   const containerVariants = {
@@ -71,11 +72,12 @@ export default function Projects() {
                   {project.screenshot && (
                     <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
                       <Image
-                        src={project.screenshot}
+                        src={getImagePath(project.screenshot)}
                         alt={project.title}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
+                        unoptimized
                       />
                     </div>
                   )}
