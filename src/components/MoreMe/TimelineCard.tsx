@@ -9,6 +9,7 @@ import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 import { TimelineItem } from '@/types'
 import { formatDate } from './utils'
 import { getImagePath } from '@/lib/useBasePath'
+import Image from 'next/image'
 
 interface TimelineCardProps {
   item: TimelineItem
@@ -74,15 +75,14 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                         Your browser does not support the video tag.
                       </video>
                     ) : (
-                      // Image element
-                      <img
-                        src={getImagePath(mediaSrc)}
+                      // Image element - using Next.js Image for automatic basePath handling
+                      <Image
+                        src={mediaSrc}
                         alt={`${item.place} - Image ${index + 1}`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement
-                          target.style.display = 'none'
-                        }}
+                        fill
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 33vw, 33vw"
+                        unoptimized
                       />
                     )}
                   </div>
@@ -114,16 +114,15 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                       Your browser does not support the video tag.
                     </video>
                   ) : (
-                    // Single image
+                    // Single image - using Next.js Image for automatic basePath handling
                     <>
-                      <img
-                        src={getImagePath(item.image)}
+                      <Image
+                        src={item.image}
                         alt={item.place}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement
-                          target.style.display = 'none'
-                        }}
+                        fill
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 33vw, 33vw"
+                        unoptimized
                       />
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
                         {item.title && (

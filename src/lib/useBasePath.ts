@@ -1,25 +1,16 @@
 /**
- * Utility function to prepend basePath to an asset URL
- * Handles GitHub Pages basePath (/myPage) in production
+ * Utility function to prepend basePath to video URLs
+ * 
+ * Note: For images, use Next.js Image component which handles basePath automatically.
+ * This function is only needed for <video> tags since Image component doesn't support videos.
+ * 
+ * @param path - The video file path (e.g., '/images/moreMe/video.mp4')
+ * @returns The path with basePath prefix in production
  */
 export function getImagePath(path: string): string {
-  // In production (GitHub Pages), we need to prepend /myPage
-  // In development, basePath is empty
-  let basePath = ''
-  
-  if (typeof window !== 'undefined') {
-    // Check if we're on GitHub Pages by looking at the pathname
-    const pathname = window.location.pathname
-    if (pathname.startsWith('/myPage')) {
-      basePath = '/myPage'
-    }
-  } else {
-    // Server-side: check environment variable
-    // For static export, we check NODE_ENV
-    if (process.env.NODE_ENV === 'production') {
-      basePath = '/myPage'
-    }
-  }
+  // For static export to GitHub Pages, always use /myPage in production
+  // This matches the basePath in next.config.js
+  const basePath = process.env.NODE_ENV === 'production' ? '/myPage' : ''
   
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
