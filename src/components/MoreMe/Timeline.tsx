@@ -6,7 +6,6 @@
 
 import { motion } from 'framer-motion'
 import { TimelineItem } from '@/types'
-import { formatDate } from './utils'
 
 interface TimelineProps {
   items: TimelineItem[]
@@ -28,21 +27,10 @@ export default function Timeline({ items, selectedIndex, onClick }: TimelineProp
             <button
               key={item.id}
               type="button"
-              className="relative flex-1 flex flex-col items-center cursor-pointer group"
+              className="relative flex-1 flex justify-center cursor-pointer group"
               onClick={() => onClick(index)}
               aria-label={`Select ${item.place}`}
             >
-              {/* Date Label - Show for selected item */}
-              {isSelected && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute bottom-full mb-2 text-sm font-semibold text-primary-600 whitespace-nowrap"
-                >
-                  {formatDate(item.date)}
-                </motion.div>
-              )}
-
               {/* Timeline Dot Container */}
               <div className="relative">
                 {/* Outer glow ring for selected dot */}
@@ -67,17 +55,6 @@ export default function Timeline({ items, selectedIndex, onClick }: TimelineProp
                   }}
                 />
               </div>
-
-              {/* Place Label - Show on hover for unselected, always for selected */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ 
-                  opacity: isSelected ? 1 : 0 
-                }}
-                className="absolute top-4 text-xs font-medium text-gray-600 text-center px-2 whitespace-nowrap"
-              >
-                {item.place}
-              </motion.div>
             </button>
           )
         })}

@@ -11,12 +11,12 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Your Name - Software Development Engineer',
+  title: 'Sikun Chen - Software Development Engineer',
   description: 'Portfolio website showcasing engineering projects, experience, and technical expertise',
   keywords: ['Software Engineer', 'SDE', 'Portfolio', 'Full Stack Developer'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: 'Sikun Chen' }],
   openGraph: {
-    title: 'Your Name - Software Development Engineer',
+    title: 'Sikun Chen - Software Development Engineer',
     description: 'Portfolio website showcasing engineering projects and experience',
     type: 'website',
   },

@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 import { TimelineItem } from '@/types'
 import { formatDate } from './utils'
+import { getImagePath } from '@/lib/useBasePath'
 
 interface TimelineCardProps {
   item: TimelineItem
@@ -62,7 +63,7 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                     {isVideo ? (
                       // Video element
                       <video
-                        src={mediaSrc}
+                        src={getImagePath(mediaSrc)}
                         className="w-full h-full object-contain"
                         controls
                         muted
@@ -75,7 +76,7 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                     ) : (
                       // Image element
                       <img
-                        src={mediaSrc}
+                        src={getImagePath(mediaSrc)}
                         alt={`${item.place} - Image ${index + 1}`}
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
@@ -102,7 +103,7 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                   {isVideo ? (
                     // Single video
                     <video
-                      src={item.image}
+                      src={getImagePath(item.image)}
                       className="w-full h-full object-contain"
                       controls
                       muted
@@ -116,7 +117,7 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                     // Single image
                     <>
                       <img
-                        src={item.image}
+                        src={getImagePath(item.image)}
                         alt={item.place}
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
