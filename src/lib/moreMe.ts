@@ -33,7 +33,7 @@ export const timelineItems: TimelineItem[] = [
     id: '3',
     date: '2022-06',
     place: 'Hamilton, Canada',
-    title: 'Visit to Hamilton',
+    title: 'Hamilton',
     image:[
       '/images/moreMe/Hamilton_0.JPG', 
       '/images/moreMe/Hamilton_1.JPG', 
