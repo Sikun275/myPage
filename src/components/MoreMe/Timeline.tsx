@@ -36,8 +36,8 @@ export default function Timeline({ items, selectedIndex, onClick }: TimelineProp
                 {/* Outer glow ring for selected dot */}
                 {isSelected && (
                   <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
+                    initial={{ scale: 1, opacity: 0 }}
+                    animate={{ scale: 1.5, opacity: 1 }}
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary-200 opacity-50 blur-sm"
                   />
                 )}

@@ -70,12 +70,13 @@ export default function Projects() {
                 {/* Project Image */}
                 <div className={`${index % 2 === 1 ? 'md:col-start-2 md:row-start-1' : ''}`}>
                   {project.screenshot && (
-                    <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
+                    <div className="relative w-full rounded-lg overflow-hidden shadow-lg">
                       <Image
                         src={getImagePath(project.screenshot)}
                         alt={project.title}
-                        fill
-                        className="object-cover"
+                        width={800}
+                        height={600}
+                        className="w-full h-auto object-contain"
                         sizes="(max-width: 768px) 100vw, 50vw"
                         unoptimized
                       />

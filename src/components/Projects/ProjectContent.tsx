@@ -40,7 +40,8 @@ export default function ProjectContent({ project, index }: ProjectContentProps) 
           </p>
         </div>
 
-        {project.systemDesign && (
+     
+        {/* {project.systemDesign && (
           <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <p className="font-semibold text-gray-900 mb-2 text-sm">
               System Design
@@ -49,7 +50,8 @@ export default function ProjectContent({ project, index }: ProjectContentProps) 
               {project.systemDesign}
             </p>
           </div>
-        )}
+        )} */}
+      
 
         {project.performance && project.performance.length > 0 && (
           <div className="bg-primary-50 rounded-lg p-4 border border-primary-100">
@@ -71,7 +73,7 @@ export default function ProjectContent({ project, index }: ProjectContentProps) 
           </div>
         )}
 
-        {project.testCoverage && (
+        {/* {project.testCoverage && (
           <div className="bg-green-50 rounded-lg p-4 border border-green-100">
             <p className="font-semibold text-green-900 mb-1 text-sm">
               Test Coverage
@@ -80,7 +82,8 @@ export default function ProjectContent({ project, index }: ProjectContentProps) 
               {project.testCoverage}
             </p>
           </div>
-        )}
+        )} */}
+
       </div>
 
       {/* Technologies */}
