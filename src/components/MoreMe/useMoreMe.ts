@@ -12,21 +12,30 @@ export function useMoreMe() {
   const [cardWidth, setCardWidth] = useState<number | null>(null)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  // Sort timeline items by date
-  const sortedItems = useMemo(() => {
-    if (!timelineItems || timelineItems.length === 0) {
-      return []
-    }
-    return [...timelineItems].sort((a, b) => 
-      new Date(a.date).getTime() - new Date(b.date).getTime()
-    )
+  // Separate category items (id 1, 2) from timeline items (id 3+)
+  const categoryItems = useMemo(() => {
+    return timelineItems.filter(item => item.id === '1' || item.id === '2')
   }, [])
 
-  // Set default selection to the latest (most recent) date
+  // Sort timeline items by date (excluding category items)
+  const sortedItems = useMemo(() => {
+    const timelineOnly = timelineItems.filter(item => item.id !== '1' && item.id !== '2')
+    if (!timelineOnly || timelineOnly.length === 0) {
+      return []
+    }
+    return [...timelineOnly].sort((a, b) => {
+      // Handle items without dates (shouldn't happen for timeline items, but safe)
+      if (!a.date || !b.date) return 0
+      return new Date(a.date).getTime() - new Date(b.date).getTime()
+    })
+  }, [])
+
+  // Set default selection to the latest (most recent) date from timeline items
   useEffect(() => {
     if (sortedItems.length > 0) {
       // Since items are sorted by date ascending, the last item is the latest
-      const latestIndex = sortedItems.length - 1
+      // Add 2 to account for category items (indices 0 and 1)
+      const latestIndex = sortedItems.length + 1
       setSelectedIndex(latestIndex)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,10 +58,20 @@ export function useMoreMe() {
     }
   }, [selectedIndex])
 
-  // Get current item by ID from original lib array (timelineItems) - this is the source of truth
+  // Get current item by index
+  // Index 0-1: category items, Index 2+: timeline items
   const getCurrentItem = (index: number): TimelineItem | null => {
-    if (index < 0 || index >= sortedItems.length) return null
-    const itemId = sortedItems[index].id
+    if (index < 0) return null
+    
+    // Category items (indices 0 and 1)
+    if (index < categoryItems.length) {
+      return categoryItems[index]
+    }
+    
+    // Timeline items (indices 2+)
+    const timelineIndex = index - categoryItems.length
+    if (timelineIndex < 0 || timelineIndex >= sortedItems.length) return null
+    const itemId = sortedItems[timelineIndex].id
     return timelineItems.find(item => item.id === itemId) || null
   }
 
@@ -63,6 +82,7 @@ export function useMoreMe() {
     setSelectedIndex,
     cardWidth,
     cardRef,
+    categoryItems,
     sortedItems,
     getCurrentItem,
   }

@@ -10,6 +10,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMoreMe } from './useMoreMe'
 import Header from './Header'
+import CategoryLine from './CategoryLine'
 import Timeline from './Timeline'
 import TimelineCard from './TimelineCard'
 
@@ -21,6 +22,7 @@ export default function MoreMe() {
     setSelectedIndex,
     cardWidth,
     cardRef,
+    categoryItems,
     sortedItems,
     getCurrentItem,
   } = useMoreMe()
@@ -51,11 +53,18 @@ export default function MoreMe() {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               className="overflow-hidden"
             >
+              {/* Category Line */}
+              <CategoryLine
+                categoryItems={categoryItems}
+                selectedIndex={selectedIndex !== null && selectedIndex < categoryItems.length ? selectedIndex : null}
+                onClick={(index) => setSelectedIndex(index)}
+              />
+
               {/* Timeline */}
               <Timeline
                 items={sortedItems}
-                selectedIndex={selectedIndex}
-                onClick={setSelectedIndex}
+                selectedIndex={selectedIndex !== null && selectedIndex >= categoryItems.length ? selectedIndex - categoryItems.length : null}
+                onClick={(index) => setSelectedIndex(index + categoryItems.length)}
               />
 
               {/* Cards Container - Shown when a timeline dot is clicked */}

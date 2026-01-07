@@ -12,6 +12,20 @@ import { TimelineItem } from '@/types'
 export const timelineItems: TimelineItem[] = [
   {
     id: '1',
+    date: '2022 - present',
+    place: '',
+    title: '🐈',
+    image: [], // Add images later
+  },
+  {
+    id: '2',
+    date: '2024 - present',
+    place: '',
+    title: '🎤',
+    image: [], // Add images later
+  },
+  {
+    id: '3',
     date: '2021-09',
     place: 'Waterloo, Canada',
     title: 'Where Uni life began 🌆',
@@ -19,7 +33,7 @@ export const timelineItems: TimelineItem[] = [
     image: '/images/moreMe/Waterloo.JPG',
   },
   {
-    id: '2',
+    id: '4',
     date: '2021-12',
     place: 'Quebec City, Canada',
     title: 'Christmas in Quebec 🎄',
@@ -30,7 +44,7 @@ export const timelineItems: TimelineItem[] = [
       '/images/moreMe/Quebec_2.JPG'],
   },
   {
-    id: '3',
+    id: '5',
     date: '2022-06',
     place: 'Hamilton, Canada',
     title: 'Hamilton',
@@ -40,7 +54,7 @@ export const timelineItems: TimelineItem[] = [
       '/images/moreMe/Hamilton_2.JPG'],
   },
   {
-    id: '4',
+    id: '6',
     date: '2022-12',
     place: 'Las Vegas, USA',
     title: 'Xmas and NYE in Vegas 🎇',
@@ -54,7 +68,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '5',
+    id: '7',
     date: '2023-01',
     place: 'Toronto, Canada',
     title: 'First time in Toronto 🇨🇦',
@@ -65,7 +79,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '6',
+    id: '8',
     date: '2023-05',
     place: 'Chengdu, Sichuan, China',
     title: 'Summer Holiday back home 🇨🇳',
@@ -76,7 +90,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '7',
+    id: '9',
     date: '2023-06',
     place: 'Japan',
     title: 'Travel with mom ❤️',
@@ -93,7 +107,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '8',
+    id: '10',
     date: '2023-09',
     place: 'Waterloo, Canada',
     title: 'Back to loo',
@@ -104,7 +118,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '9',
+    id: '11',
     date: '2023-12',
     place: 'California, USA',
     title: 'Christmas road trip in California 🎄',
@@ -121,7 +135,7 @@ export const timelineItems: TimelineItem[] = [
     ]
   },
   {
-    id: '10',
+    id: '12',
     date: '2024-02',
     place: 'Niagara Falls, Canada',
     title: 'Niagara Falls',

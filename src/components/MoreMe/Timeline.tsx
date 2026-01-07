@@ -16,11 +16,8 @@ interface TimelineProps {
 export default function Timeline({ items, selectedIndex, onClick }: TimelineProps) {
   return (
     <div className="relative py-16">
-      {/* Horizontal Timeline Line */}
-      <div className="relative w-full h-1 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200 mb-16" />
-
       {/* Timeline Dots */}
-      <div className="relative w-full flex justify-between items-center">
+      <div className="relative w-full flex justify-between items-center px-12">
         {items.map((item, index) => {
           const isSelected = selectedIndex === index
           return (
@@ -38,16 +35,16 @@ export default function Timeline({ items, selectedIndex, onClick }: TimelineProp
                   <motion.div
                     initial={{ scale: 1, opacity: 0 }}
                     animate={{ scale: 1.5, opacity: 1 }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary-200 opacity-50 blur-sm"
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary-200 opacity-50 blur-sm"
                   />
                 )}
 
-                {/* Timeline Dot */}
+                {/* Timeline Dot - Empty circle when unselected, full circle when selected */}
                 <motion.div
-                  className={`absolute top-[-8px] rounded-full border-4 border-white shadow-lg transition-all z-20 ${
+                  className={`rounded-full border-2 border-white shadow-lg transition-all z-20 ${
                     isSelected
-                      ? 'w-6 h-6 bg-primary-600 scale-125 ring-4 ring-primary-200'
-                      : 'w-3 h-3 bg-primary-300 group-hover:bg-primary-400 group-hover:scale-110'
+                      ? 'w-6 h-6 bg-primary-600 scale-125 ring-2 ring-primary-200'
+                      : 'w-6 h-6 bg-transparent border-2 border-primary-300 group-hover:border-primary-400 group-hover:scale-110'
                   }`}
                   whileTap={{ scale: 0.9 }}
                   animate={{
