@@ -15,7 +15,7 @@ interface TimelineProps {
 
 export default function Timeline({ items, selectedIndex, onClick }: TimelineProps) {
   return (
-    <div className="relative py-16">
+    <div className="relative py-4">
       {/* Timeline Dots */}
       <div className="relative w-full flex justify-between items-center px-12">
         {items.map((item, index) => {
@@ -41,10 +41,10 @@ export default function Timeline({ items, selectedIndex, onClick }: TimelineProp
 
                 {/* Timeline Dot - Empty circle when unselected, full circle when selected */}
                 <motion.div
-                  className={`rounded-full border-2 border-white shadow-lg transition-all z-20 ${
+                  className={`rounded-full shadow-lg transition-all z-20 ${
                     isSelected
-                      ? 'w-6 h-6 bg-primary-600 scale-125 ring-2 ring-primary-200'
-                      : 'w-6 h-6 bg-transparent border-2 border-primary-300 group-hover:border-primary-400 group-hover:scale-110'
+                      ? 'w-6 h-6 bg-primary-600 scale-125 ring-2 ring-primary-200 border-2 border-primary-700'
+                      : 'w-6 h-6 bg-transparent border-4 border-primary-500 group-hover:border-primary-600 group-hover:scale-110'
                   }`}
                   whileTap={{ scale: 0.9 }}
                   animate={{

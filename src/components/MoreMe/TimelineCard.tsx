@@ -28,14 +28,18 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
       {/* Current Item Info */}
       <div className="mb-6 pb-6 border-b border-gray-200">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-          <div className="flex items-center space-x-2 text-primary-600 font-semibold mb-2 md:mb-0">
-            <FaCalendarAlt className="w-4 h-4" />
-            <span>{formatDate(item.date)}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-gray-600">
-            <FaMapMarkerAlt className="w-4 h-4" />
-            <span className="font-medium">{item.place}</span>
-          </div>
+          {item.date && (
+            <div className="flex items-center space-x-2 text-primary-600 font-semibold mb-2 md:mb-0">
+              <FaCalendarAlt className="w-4 h-4" />
+              <span>{formatDate(item.date)}</span>
+            </div>
+          )}
+          {item.place && (
+            <div className="flex items-center space-x-2 text-gray-600">
+              <FaMapMarkerAlt className="w-4 h-4" />
+              <span className="font-medium">{item.place}</span>
+            </div>
+          )}
         </div>
 
         {item.title && (
@@ -75,14 +79,12 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                         Your browser does not support the video tag.
                       </video>
                     ) : (
-                      // Image element - using Next.js Image with manual basePath handling
-                      <Image
+                      // Image element - using regular img tag for better compatibility with static files
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
                         src={getImagePath(mediaSrc)}
-                        alt={`${item.place} - Image ${index + 1}`}
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 33vw, 33vw"
-                        unoptimized
+                        alt={`${item.place || item.title || 'Image'} - Image ${index + 1}`}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
                   </div>

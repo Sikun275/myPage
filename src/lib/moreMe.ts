@@ -15,14 +15,26 @@ export const timelineItems: TimelineItem[] = [
     date: '2022 - present',
     place: '',
     title: '🐈',
-    image: [], // Add images later
+    image: [
+      '/images/moreMe/cat_0.MP4',
+      '/images/moreMe/cat_1.JPG',
+      '/images/moreMe/cat_2.JPG',
+      '/images/moreMe/cat_3.MP4',
+      '/images/moreMe/cat_4.MP4',
+      '/images/moreMe/cat_5.JPG'
+    ],
   },
   {
     id: '2',
     date: '2024 - present',
     place: '',
     title: '🎤',
-    image: [], // Add images later
+    image: [
+      '/images/moreMe/con_0.JPG',
+      '/images/moreMe/con_1.JPG',
+      '/images/moreMe/con_2.JPG',
+      '/images/moreMe/con_3.JPG'
+    ],
   },
   {
     id: '3',

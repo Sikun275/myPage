@@ -23,7 +23,7 @@ export default function CategoryLine({ categoryItems, selectedIndex, onClick }: 
   }
 
   return (
-    <div className="relative py-8 mb-8">
+    <div className="relative py-8 mb-2">
       {/* Category Icons */}
       <div className="relative w-full flex justify-center items-center gap-8">
         {categoryItems.map((item, index) => {
