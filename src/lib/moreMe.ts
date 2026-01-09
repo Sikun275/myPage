@@ -159,6 +159,26 @@ export const timelineItems: TimelineItem[] = [
       '/images/moreMe/nf_4.JPG',
       '/images/moreMe/nf_5.JPG',
     ]
+  },
+  {
+    id: '13',
+    date: '2024-2025',
+    place: 'GTA, Canada',
+    title: 'Living in GTA 🇨🇦',
+    image: [
+      '/images/moreMe/GTA_0.JPG',
+      '/images/moreMe/GTA_1.JPG',
+      '/images/moreMe/GTA_2.JPG',
+      '/images/moreMe/GTA_3.JPG',
+      '/images/moreMe/GTA_4.JPG',
+      '/images/moreMe/GTA_5.JPG',
+      '/images/moreMe/GTA_6.JPG',
+      '/images/moreMe/GTA_7.JPEG',
+      '/images/moreMe/GTA_8.JPG',
+      '/images/moreMe/GTA_9.JPG',
+      '/images/moreMe/GTA_10.JPG',
+      '/images/moreMe/GTA_11.JPG',
+    ]
   }
 ]
 

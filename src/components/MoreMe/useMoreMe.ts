@@ -30,15 +30,10 @@ export function useMoreMe() {
     })
   }, [])
 
-  // Set default selection to the latest (most recent) date from timeline items
+  // Set default selection to the cat in Category Line (index 0)
   useEffect(() => {
-    if (sortedItems.length > 0) {
-      // Since items are sorted by date ascending, the last item is the latest
-      // Add 2 to account for category items (indices 0 and 1)
-      const latestIndex = sortedItems.length + 1
-      setSelectedIndex(latestIndex)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Select cat category item (index 0)
+    setSelectedIndex(0)
   }, [])
 
   // Measure card width and calculate square size (slightly less than 1/3 for 3 per row with margins)
