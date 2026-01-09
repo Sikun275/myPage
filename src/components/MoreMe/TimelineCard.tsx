@@ -4,12 +4,14 @@
 
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 import { TimelineItem } from '@/types'
 import { formatDate } from './utils'
 import { getImagePath } from '@/lib/useBasePath'
 import Image from 'next/image'
+import MediaModal from './MediaModal'
 
 interface TimelineCardProps {
   item: TimelineItem
@@ -23,6 +25,19 @@ const isVideoFile = (src: string): boolean => {
 }
 
 export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardProps) {
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleMediaClick = (mediaSrc: string) => {
+    setSelectedMedia(mediaSrc)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedMedia(null)
+  }
+
   return (
     <div ref={cardRef} className="card p-6 md:p-8 max-w-4xl mx-auto">
       {/* Current Item Info */}
@@ -69,12 +84,13 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                       // Video element
                       <video
                         src={getImagePath(mediaSrc)}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain cursor-pointer"
                         controls
                         muted
                         loop
                         playsInline
                         preload="metadata"
+                        onClick={() => handleMediaClick(mediaSrc)}
                       >
                         Your browser does not support the video tag.
                       </video>
@@ -84,7 +100,8 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                       <img
                         src={getImagePath(mediaSrc)}
                         alt={`${item.place || item.title || 'Image'} - Image ${index + 1}`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        onClick={() => handleMediaClick(mediaSrc)}
                       />
                     )}
                   </div>
@@ -94,6 +111,9 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
           ) : (
             // Single media file
             (() => {
+              // Ensure item.image is a string (not an array)
+              if (typeof item.image !== 'string') return null
+              
               const isVideo = isVideoFile(item.image)
               return (
                 <div
@@ -106,18 +126,19 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                     // Single video
                     <video
                       src={getImagePath(item.image)}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain cursor-pointer"
                       controls
                       muted
                       loop
                       playsInline
                       preload="metadata"
+                      onClick={() => handleMediaClick(item.image as string)}
                     >
                       Your browser does not support the video tag.
                     </video>
                   ) : (
                     // Single image - using Next.js Image with manual basePath handling
-                    <>
+                    <div onClick={() => handleMediaClick(item.image as string)} className="cursor-pointer">
                       <Image
                         src={getImagePath(item.image)}
                         alt={item.place}
@@ -139,13 +160,23 @@ export default function TimelineCard({ item, cardWidth, cardRef }: TimelineCardP
                           {formatDate(item.date)}
                         </p>
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
               )
             })()
           )}
         </div>
+      )}
+
+      {/* Media Modal */}
+      {selectedMedia && (
+        <MediaModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          mediaSrc={selectedMedia}
+          alt={item.place || item.title || 'Image'}
+        />
       )}
     </div>
   )
