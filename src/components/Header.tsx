@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { personalInfo } from '@/lib/personalInfo'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenu, HiX } from 'react-icons/hi'
+import Link from 'next/link'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -38,14 +39,15 @@ export default function Header() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <motion.a
-            href="#"
-            className="text-xl md:text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {personalInfo.name.split(' ')[0]}
-          </motion.a>
+          <Link href="/">
+            <motion.div
+              className="text-xl md:text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {personalInfo.name.split(' ')[0]}
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

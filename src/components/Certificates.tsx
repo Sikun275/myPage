@@ -30,7 +30,7 @@ export default function Certificates() {
   return (
     <>
       {/* Section ID for navigation anchor - links to #certificates */}
-      <section id="certificates" className="section-container bg-white">
+    <section id="certificates" className="section-container bg-white">
       {/* Main content container with max width constraint */}
       <div className="max-w-6xl mx-auto">
         {/* Header section with centered text and bottom margin */}

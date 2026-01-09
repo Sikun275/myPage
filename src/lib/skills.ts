@@ -4,23 +4,27 @@ export const skills: Skill[] = [
   // Frontend
   { name: 'React', category: 'frontend' },
   { name: 'TypeScript', category: 'frontend' },
-  { name: 'Next.js', category: 'frontend' },
-  { name: 'HTML/CSS', category: 'frontend' },
+  { name: 'JavaScript (ES6+)', category: 'frontend' },
+  { name: 'Swift', category: 'frontend' },
+  { name: 'SwiftUI', category: 'frontend' },
+  { name: 'MVVM', category: 'frontend' },
   // Backend
-  { name: 'Node.js', category: 'backend' },
-  { name: 'Java', category: 'backend' },
   { name: 'Python', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'MongoDB', category: 'backend' },
-  { name: 'Redis', category: 'backend' },
+  { name: 'Node.js', category: 'backend' },
+  { name: 'REST APIs', category: 'backend' },
+  { name: 'SQL / NoSQL Databases', category: 'backend' },
+  { name: 'C#', category: 'backend' },
+  { name: 'Go', category: 'backend' },
   // Infrastructure
-  { name: 'AWS', category: 'infrastructure' },
   { name: 'Docker', category: 'infrastructure' },
-  { name: 'Kubernetes', category: 'infrastructure' },
-  { name: 'CI/CD', category: 'infrastructure' },
+  { name: 'AWS (EC2, S3, Lambda, RDS)', category: 'infrastructure' },
+  { name: 'CI/CD (GitHub Actions)', category: 'infrastructure' },
   // Tools
   { name: 'Git', category: 'tools' },
-  { name: 'Jest', category: 'tools' },
   { name: 'Linux', category: 'tools' },
+  { name: 'Selenium', category: 'tools' },
+  { name: 'Jest', category: 'tools' },
+  { name: 'Xcode/ VS code/ Cursor', category: 'tools' },
+  { name: 'API', category: 'tools' },
 ]
 

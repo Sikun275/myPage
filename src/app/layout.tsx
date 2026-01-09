@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description: 'Portfolio website showcasing engineering projects, experience, and technical expertise',
   keywords: ['Software Engineer', 'SDE', 'Portfolio', 'Full Stack Developer'],
   authors: [{ name: 'Sikun Chen' }],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
   openGraph: {
     title: 'Sikun Chen - Software Development Engineer',
     description: 'Portfolio website showcasing engineering projects and experience',
